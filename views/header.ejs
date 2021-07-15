@@ -12,7 +12,7 @@
 		function fade(txt){
 			$('.message').text(txt)
 			$('.message').animate({
-				top:'200px',speed:'1000',easing:'swing'
+				top:0
 			})
 			setTimeout(function(){
 				$('.message').animate({
@@ -47,7 +47,7 @@
 	<header>
 		<div class="user_name">
 			<% if(session.user){ %>
-				 当前用户：<%= session.user %>
+				 当前用户<%= session.user %>
 			<% } %>
 			<% if(!session.user){ %>
 				欢迎注册登录^_^
@@ -75,7 +75,7 @@
 					<% }%>
 					
 					<span class="signout">退出</span>
-					<a target="__blank" href="#">GitHub</a>
+					<a target="__blank" href="https://github.com/shaojiehu/myblog">GitHub</a>
 				</div>
 			<% } %>
 			<% if(!session.user){ %>
@@ -96,7 +96,7 @@
 					<% }else{ %>
 						<a href="/signin">登录</a>
 					<% }%>
-					<a target="__blank" href="#">GitHub</a>
+					<a target="__blank" href="https://github.com/shaojiehu/myblog">GitHub</a>
 				</div>
 			<% } %>
 		</div>

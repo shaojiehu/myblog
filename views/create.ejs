@@ -1,7 +1,7 @@
 <%- include("header",{type:'create'}) %>
 <div class="container">
-	<form style="width:100%" method="post" class="form create">
-		<div>
+	<form style="width:100%" method="post">
+		<div class="title-create">
 			<label>标题：</label>
 			<input placeholder="请输入标题" type="text" name="title">
 		</div>
@@ -17,6 +17,7 @@
 <script>
         let E = window.wangEditor
         let editor = new E("#div1")
+        editor.config.height = 250
         // 或者 const editor = new E(document.getElementById('div1'))
         editor.create();
              
@@ -34,10 +35,8 @@
                 cache: false,
                 dataType: 'json',
                 success: function (msg) {
-                    if (msg.code == 200) {
-                        editor = null;
-                        E = null;
-                        // fade('发表成功')
+                    if (msg.code == 200) {                      
+                         fade('发表成功')
                         setTimeout(function(){
                             location.href = "/posts"
                         },2000)

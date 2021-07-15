@@ -38,12 +38,6 @@ header:after{
 header .user_right{
     float: right
 }
-/* header .user_right .active{
-    color: #1296db;
-    background: #fff;
-    border: 1px solid #1296db;
-    box-shadow: 0 5px 5px #ccc;
-} */
 header .user_right .active{
     color: #fff;
     background: #1296db;
@@ -52,9 +46,6 @@ header .user_right .active{
 }
 header .user_name {
     float: left
-}
-.user_name {
-    /* font-size: 20px; */
 }
 
 .has_user a,
@@ -69,36 +60,28 @@ header .user_name {
     transition: all 0.3s;
 }
 
-/* .has_user a:hover,.has_user span:hover{
-    color: #1296db;
-    background: #fff;
-    border: 1px solid #1296db;
-    box-shadow: 0 5px 5px #ccc;
-} */
 .has_user a:hover,.has_user span:hover{
     color: #fff;
     background: #1296db;
     border: 1px solid #1296db;
     box-shadow: 0 5px 5px #ccc;    
 }
-.posts{
-    /* border-radius: 4px; 
-    border: 1px solid #ddd; */
-}
+
 .posts > li{
     padding: 10px;
     position: relative;
     padding-bottom: 40px;
-    margin:0 0 40px 0 ;
+    margin:0 0 20px 0 ;
 }
 .posts .comment_pv{
     position: absolute;
     bottom: 5px;
     right: 10px;
 }
+
 .posts .author{
     position: absolute;
-    left: 10px;
+    left: 50px;
     bottom: 5px;
     font-size:0;
 }
@@ -106,16 +89,7 @@ header .user_name {
     margin-right: 5px;
     font-size: 16px;
 }
-.posts > li:hover {
-    /* background: #f2f2f2; */
-}
-.posts > li:hover pre{
-    /* border: 1px solid #666; */
-}
-.posts > li:hover .content{
-    /* border-top: 1px solid #fff;
-    border-bottom: 1px solid #fff; */
-}
+
 .posts > li + li{
     border-top: 1px solid #ddd;
 }
@@ -141,8 +115,6 @@ header .user_name {
     border-radius: 50%;
 }
 .posts .content{
-    /* border-top: 1px solid #f2f2f2;
-    border-bottom: 1px solid #f2f2f2; */
     margin: 10px 0 0 0 ;
     padding: 10px 0;
     margin-left: 40px;
@@ -190,7 +162,7 @@ header .user_name {
 
 .submit {
     display: block;
-    width: 100px;
+    width: 254px;
     height: 40px;
     line-height: 40px;
     text-align: center;
@@ -198,7 +170,7 @@ header .user_name {
     background: #fff;
     cursor: pointer;
     color: #1296db;
-    float: right;
+    margin: auto;
     margin-top: 20px ;
     border:1px solid #1296db;
 }
@@ -230,15 +202,7 @@ header .user_name {
 .cmt_content img{
     max-width: 100%;
 }
-/* .cmt_content:after {
-    content: '#content';
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    color: #aaa;
-    font-size: 13px;
-}
- */
+
 .cmt_name {
     position: absolute;
     right: 8px;
@@ -257,12 +221,35 @@ header .user_name {
     top: 5px;
     color: #aaa
 }
-.form {
-    margin: 0 auto;
-    width: 50%;
-    margin-top: 20px;
+.form-login {
+    width: 400px;
+    height: 300px;    
+    border: 1px solid #1296db;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #ccc;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-top: 80px;
+    margin-left: -200px;
+    text-align: center;
 }
-
+.form-reg{
+    width: 400px;
+    height: 400px;    
+    border: 1px solid #1296db;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #ccc;
+    position: absolute;
+    top:50%;
+    left:50%;
+    margin-top: 80px;
+    margin-left: -200px;
+    text-align: center; 
+}
+div >input{
+  margin: 20px auto;
+}
 textarea {
     width: 100%;
     height: 150px;
@@ -287,38 +274,32 @@ textarea#spContent{
 .container {
     width: 60%;
     margin: 30px auto;
+    position: relative;
 }
-.form img.preview {
-    width:100px;
-    height:100px;
-    border-radius: 50%;
+.form-reg img.preview {
+    width:40px;
+    height:40px;
     display: none;
-    margin-top:10px;
 }
 input {
     display: block;
-    width: 500px;
-    height: 35px;
-    font-size: 18px;
-    padding: 6px 7px;	
+    width: 238px;
+    height: 40px;
+    font-size: 14px;
+    padding: 0 7px;	
 	border-radius: 4px;   
-	border: 1px solid #d7dde4;
+	border: 1px solid #1296db;
 	-webkit-appearance: none;
 }
 
 input:focus,textarea:focus{
     outline: 0;
-    box-shadow: 0 0 0 2px rgba(51,153,255,.2);
-    border-color: #5cadff;
+    /* box-shadow: 0 0 0 2px rgba(51,153,255,.2); */
+    border-color: #1296db;
 }
 
 input:hover,input:active,textarea:hover,textarea:active{
-    border-color: #5cadff;
-}
-
-.create label {
-    display: block;
-    margin: 10px 0;
+    border-color: #1296db;
 }
 
 .comment_wrap form {
@@ -424,5 +405,59 @@ input:hover,input:active,textarea:hover,textarea:active{
     position: relative;
     padding-bottom: 10px;
     margin:0 0 10px 0 ;
-   
 }
+.login-title{
+    font-size: 22px;
+    height:60px;
+    line-height: 60px;
+    user-select: none;
+}
+.reg-title{
+    font-size: 22px;
+    height:60px;
+    line-height: 60px;
+    user-select: none;
+}
+/* 上传图片样式 */
+.file {
+    position: relative;
+    display: inline-block;
+    width:150px;
+    height:40px;
+    background: #fff;
+    border: 1px solid #1296db;
+    border-radius: 4px;
+    padding: 0 12px;
+    overflow: hidden;
+    color: #1296db;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.file:hover {
+    background: #1296db;
+    border-color: #1296db;  
+    text-decoration: none;
+}
+.a-upload{
+  height:40px;
+  line-height: 40px;  
+}
+.title-create >input{
+ margin: 0 0 20px 0 ;
+}
+.comment_pv_define{
+    float: right;
+}
+.title_pv_define{
+    float: left;
+    color: #1E9FFF;
+}
+

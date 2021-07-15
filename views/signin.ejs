@@ -1,12 +1,13 @@
 <%- include("header",{type:'signin'}) %>
 	<div class="container">
-		<form class="form create" method="post ">
+		<form class="form-login" method="post ">
+			<div class="login-title">
+				登录
+			</div>
 			<div>
-				<label>用户名：</label> 
 				<input placeholder="用户名" type="text" name="name">
 			</div>
 			<div>
-				<label>密码：</label> 
 				<input placeholder="密码" type="password" name="password">
 			</div>
 			<div class="submit">登录</div>
@@ -23,10 +24,10 @@
 			if ($('input[name=name]').val().trim() == '' || $('input[name=password]').val().trim() == '' ) {
 				fade('请输入用户名或密码')
 			}else{
-				console.log($('.form').serialize())
+				console.log($('.form-login').serialize())
 				$.ajax({
 					url: "/signin",
-					data: $('.form').serialize(),
+					data: $('.form-login').serialize(),
 					type: "POST",
 					cache: false,
 					dataType: 'json',

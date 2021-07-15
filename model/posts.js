@@ -307,7 +307,7 @@ exports.postDeleteComment = async ctx => {
             }
         })
     if (allow) {
-        await userModel.reducePostCommentCount(postId)
+        await userModel.reduceArticleCommentCount(postId)
         await userModel.deleteComment(commentId)
             .then(() => {
                 ctx.body = {

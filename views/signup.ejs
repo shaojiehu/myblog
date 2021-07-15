@@ -1,24 +1,27 @@
 <%- include("header",{type:'signup'}) %>
 	<div class="container">
-		<form class="form create" method="post">
-			<div>
-				<label>用户名：</label> 
+		<form class="form-reg" method="post">
+			<div class="reg-title">			 
+              注册
+			</div>
+			<div>			 
 				<input placeholder="请输入用户名" type="text" name="name">
 			</div>
-			<div>
-				<label>密码：</label> 
+			<div>				 
 				<input placeholder="请输入密码" class="password" type="password" name="password">
 			</div>
-			<div>
-				<label>重复密码：</label> 
+			<div>			
 				<input placeholder="请确认密码" class="repeatpass" type="password" name="repeatpass">
 			</div>
 			<div>
-				<label>上传头像：</label>
-				<input type="file" name="avator" id="avator">
+				<div class="file">	
+					<a href="javascript:;" class="a-upload">			
+					<input type="file" name="avator" id="avator">点击上传头像
+					</a>							
+				</div>
 				<input type="hidden" id="avatorVal">
 				<img class="preview" alt="预览头像">
-			</div>
+			</div>						
 			<div class="submit">注册</div>
 		</form>
 	</div>
