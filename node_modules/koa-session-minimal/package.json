@@ -1,0 +1,47 @@
+{
+  "name": "koa-session-minimal",
+  "version": "4.0.1",
+  "description": "Minimal implementation of session middleware for Koa 2. Inspired by and compatible with koa-generic-session",
+  "main": "src/session.js",
+  "scripts": {
+    "lint": "eslint src test example",
+    "test": "nyc mocha --timeout 3000 --bail --exit test",
+    "report": "nyc report --reporter=cobertura"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/longztian/koa-session-minimal.git"
+  },
+  "keywords": [
+    "koa",
+    "session"
+  ],
+  "author": "Longzhang Tian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/longztian/koa-session-minimal/issues"
+  },
+  "homepage": "https://github.com/longztian/koa-session-minimal#readme",
+  "dependencies": {
+    "co": "^4.6.0",
+    "deep-equal": "^2.0.5",
+    "uid-safe": "^2.1.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "koa": "^2.13.0",
+    "koa-redis": "^4.0.1",
+    "mocha": "^7.2.0",
+    "nyc": "^15.1.0",
+    "supertest": "^4.0.2"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "files": [
+    "src"
+  ]
+}

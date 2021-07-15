@@ -1,0 +1,46 @@
+<%- include("header",{type:''}) %>
+<div class="container">
+	<form style="width:100%" class="form create" method="post">
+		<div>
+			<label>标题：</label>
+			<input placeholder="标题" type="text" name="title" value="<%- postsTitle %>">
+		</div>
+		<div>
+			<label>内容：</label>
+			<div id="div1">
+				<p><%= postsContent %></p>
+			</div>
+			<!-- <textarea name="content" id="" cols="42" rows="10"><%= postsContent %></textarea> -->
+		</div>
+		<div class="submit">修改</div>
+	</form>
+</div>
+<script>
+	 let E = window.wangEditor
+        let editor = new E("#div1")
+        // 或者 const editor = new E(document.getElementById('div1'))
+        editor.create();
+	$('.submit').click(function(){
+		$.ajax({
+            url: '',
+            data:{title:$('input[name=title]').val(),content:editor.txt.text()},
+            type: "POST",
+            cache: false,
+            dataType: 'json',
+            success: function (msg) {
+				if(msg.code != 200){
+					fade('修改失败')
+				}else if (msg) {
+               		fade('修改成功')
+               		setTimeout(function (){
+	               		window.location.href = "/posts"
+               		},1000)
+               	} 
+            },
+            error: function () {
+                alert('服务器异常');
+            }
+        })		
+	})
+</script>
+<% include footer %>

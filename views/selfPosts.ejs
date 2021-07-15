@@ -1,0 +1,87 @@
+<%- include("header",{type:'my'}) %>
+	<div class="container">
+		<ul class="posts-list">
+			<% posts.forEach(function(res,index){ %>
+				<li>
+					<!-- <div class="author">					
+						<span><img class="Icon" src="/icons/comment.png" alt="comment"/><%= res.comments %></span><span></span><span class="gap"></span>
+						<span><img class="Icon" src="/icons/pv.png" alt="pv"/><%= res.pv %></span><span></span><span class="gap"></span>
+						<span><img class="Icon" src="/icons/support.png" alt="support"/>0</span>
+					</div> -->
+					<!-- <div class="comment_pv">
+						<span><%= res.moment %></span>
+					</div> -->
+					<a href="/posts/<%= res.id %>">
+						<div class="title">
+							<%- index+1 %>
+							<!-- <img class="userAvator" src="images/<%= res.avator %>"  alt="avator">  -->
+							<%- res.title %>
+						</div>
+						<!-- <div class="content markdown">
+							<%- res.content %>
+						</div> -->
+					</a>
+				</li>
+			<% }) %>
+		</ul>
+		<div style="margin-top: 30px" class="pagination" id="page"></div>	
+	</div>
+	<script src="/js/pagination.js"></script>
+	<script>
+		pagination({
+			selector: '#page',
+			totalPage: <%= postsPageLength %>,
+			currentPage: 1,
+			prev: '上一页',
+			next: '下一页',
+			first: true,
+			last: true,
+			showTotalPage: true,
+			count: 2//当前页前后显示的数量
+		},function(val){
+			// 当前页
+			$.ajax({
+				url: "posts/self/page",
+				type: 'POST',
+				data:{
+					page: val,
+					name: location.search.slice(1).split('=')[1]
+				},
+				cache: false,
+				success: function (msg) {
+					//console.log(msg)
+					if (msg != 'error') {
+						$('.posts').html(' ')
+						$.each(msg,function(i,val){
+							//console.log(val.content)
+							$('.posts').append(
+								'<li>'+
+									'<div class=\"author\">'+
+										'<span title=\"'+ val.name +'\"><a href=\"/posts?author='+ val.name +' \">author: '+ val.name +'</a></span>'+
+										'<span>评论数：'+ val.comments +'</span>'+
+										'<span>浏览量：'+ val.pv +'</span>'+
+									'</div>'+
+									'<div class=\"comment_pv\">'+
+										'<span>'+ val.moment +'</span>'+
+									'</div>'+
+									'<a href=\"/posts/'+ val.id +'\">'+
+										'<div class=\"title\">'+
+											'<img class="userAvator" src="images/' + val.avator + '" alt=\"avator\">' +
+											 val.title +
+										'</div>'+
+										'<div class=\"content\">'+
+											 val.content +
+										'</div>'+
+									'</a>'+
+								'</li>'
+							)
+						})
+					}else{
+						alert('分页不存在')
+					} 
+				}
+			})
+		
+		})
+	</script>
+<% include footer %>

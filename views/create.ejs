@@ -1,0 +1,55 @@
+<%- include("header",{type:'create'}) %>
+<div class="container">
+	<form style="width:100%" method="post" class="form create">
+		<div>
+			<label>标题：</label>
+			<input placeholder="请输入标题" type="text" name="title">
+		</div>
+		<div>
+			<label>内容：</label>
+            <div id="div1"></div>
+			<!-- <textarea placeholder="请输入内容" name="content" id="" cols="42" rows="10"></textarea> -->
+		</div>
+		<div class="submit">发表</div>
+        
+	</form>
+</div>
+<script>
+        let E = window.wangEditor
+        let editor = new E("#div1")
+        // 或者 const editor = new E(document.getElementById('div1'))
+        editor.create();
+             
+    $('.submit').click(function(){
+        console.log(editor.txt.text());
+        if ($('input[name=title]').val().trim() == '') {
+            fade('请输入标题')
+        }else if (editor.txt.text().trim() == '') {
+            fade('请输入内容')
+        }else{          
+            $.ajax({
+                url: "/create",
+                data: {title:$('input[name=title]').val(),content:editor.txt.text()},
+                type: "POST",
+                cache: false,
+                dataType: 'json',
+                success: function (msg) {
+                    if (msg.code == 200) {
+                        editor = null;
+                        E = null;
+                        // fade('发表成功')
+                        setTimeout(function(){
+                            location.href = "/posts"
+                        },2000)
+                    }else{
+                        fade('发表失败')
+                    }
+                },
+                error: function () {
+                    alert('异常');
+                }
+            })			
+        }   
+    })
+</script>
+<% include footer %>

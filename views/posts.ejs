@@ -1,0 +1,141 @@
+<%- include("header",{type:'all'}) %>
+	<div class="container">
+	<% if(posts.length > 0 ){  %>
+		<ul class="posts">
+			<% posts.forEach(function(res){ %>
+				<li>
+					<div class="author">
+						<!-- <span title="<%= res.name %>"><a href="/posts?author=<%= res.name %> ">作者：<%= res.name %></a></span> -->
+						<span title="<%= res.name %>"><img class="Icon" src="/icons/author.png" alt="author"/><%= res.name %></span><span class="gap"></span>
+						<span><img class="Icon" src="/icons/comment.png" alt="comment"/><%= res.comments %></span><span></span><span class="gap"></span>
+						<span><img class="Icon" src="/icons/pv.png" alt="pv"/><%= res.pv %></span><span></span><span class="gap"></span>
+						<span><img class="Icon" src="/icons/support.png" alt="support"/>0</span>
+					</div>
+					<div class="comment_pv">
+						<span><%= res.moment %></span>
+					</div>
+					
+						<div class="title">
+							<img class="userAvator" src="images/<%= res.avator %>"  alt="avator" />
+							<a href="/posts/<%= res.id %>"><%- res.title %></a>
+						</div>
+						<div class="content markdown">
+							<%- res.content %>
+						</div>
+					
+				</li>
+			<% }) %>
+		</ul>
+	<% }else{  %>
+		<p class="tips">暂时没有文章，快去前往发表吧</p>
+	<% } %>
+		<div style="margin-top: 30px" class="pagination" id="page"></div>	
+	</div>
+	<script src="/js/pagination.js"></script>
+	<script>
+		pagination({
+			selector: '#page',
+			totalPage: <%= postsPageLength %>,
+			currentPage: 1,
+			prev: '上一页',
+			next: '下一页',
+			first: true,
+			last: true,
+			showTotalPage: true,
+			count: 2//当前页前后显示的数量
+		},function(val){
+			// 当前页
+			$.ajax({
+				url: "posts/page",
+				type: 'POST',
+				data:{
+					page: val
+				},
+				cache: false,
+				success: function (msg) {
+					console.log(msg)
+					if (msg != 'error') {
+						$('.posts').html(' ')
+						$.each(msg,function(i,val){
+							//console.log(val.content)
+							$('.posts').append(
+								'<li>'+
+									'<div class=\"author\">'+
+										'<span title=\"'+ val.name +'\"><a href=\"/posts?author='+ val.name +' \">author: '+ val.name +'</a></span>'+
+										'<span>评论数：'+ val.comments +'</span>'+
+										'<span>浏览量：'+ val.pv +'</span>'+
+									'</div>'+
+									'<div class=\"comment_pv\">'+
+										'<span>'+ val.moment +'</span>'+
+									'</div>'+
+									'<a href=\"/posts/'+ val.id +'\">'+
+										'<div class=\"title\">'+
+											'<img class="userAvator" src="images/'+ val.avator +'" alt=\"avator\">'+
+											 val.title +
+										'</div>'+
+										'<div class=\"content markdown\">'+
+											 val.content +
+										'</div>'+
+									'</a>'+
+								'</li>'
+							)
+						})
+					}else{
+						alert('分页不存在')
+					} 
+				}
+			})
+		
+		})
+		/*//滚动加载数据，现在做成分页的
+		// 初始化数据输出
+		eachInit(postList)
+		var page = 2,
+			lock = true;
+		// 无限加载 每次输出5条
+		$(window).scroll(function(){
+			if (window.innerHeight + document.documentElement.scrollTop + 50 > document.documentElement.scrollHeight && lock) {
+				lock = false
+				$.ajax({
+					url:'/posts/page/'+page,
+					type:'POST',
+					success:function(res){
+						$('.posts').html('')
+						postList = postList.concat(res)
+						eachInit(postList)
+						page++
+						lock = true;
+						if (res.length == 0) {
+							$('body').append('<p class="tips">没有了，再扯滚动条都要被你扯坏了→_→  !</p>')
+							lock = false;
+						}
+					}
+				})
+			}	
+		})
+		function eachInit(arr){
+			$.each(arr,function(i,val){
+				document.querySelector('.posts').innerHTML += `
+					<li>
+						<div class="post_3">
+							<p class="post_user"><a href="/posts?author=${val['name']} ">作者: ${val['name']}</a></p>
+							<p class="post_comments">评论数：${val['comments']} </p>
+							<p class="post_pv">浏览数：${val['pv']} %></p>
+						</div>
+						<a target="_blank" href="/posts/${val['id']}">
+							<div class="post_title">
+								<h3>title</h3>
+								<p>${val['title']}</p>
+							</div>
+							<div class="post_content">
+								<h3>content</h3>
+								<p>${val['content']}</p>
+							</div>
+						</a>
+						<!-- <p>userid:${val['uid']}</p> -->
+						<p class="post_time">发表时间：${val['moment']}</p>
+					</li>		`	
+			})
+		}*/
+	</script>
+<% include footer %>
